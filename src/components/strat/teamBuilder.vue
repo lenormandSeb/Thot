@@ -13,11 +13,51 @@
                 </div>
             </div>
         </div>
+        <hr>
+        <div class="table table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <th v-for="type in types" :key="type.name"><b-img :src='getImage(type.name)' fluid></b-img></th>
+                </thead>
+                <tr v-for="n in 6" :key="n">
+                    <td>{{ n }}</td>
+                </tr>
+            </table>
+        </div>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'teamBuilder'
+    name: 'teamBuilder',
+    data() {
+        return {
+            types: [
+                {name : 'Acier'},
+                {name : 'Combat'},
+                {name : 'Dragon'},
+                {name : 'Eau'},
+                {name : 'Electrik'},
+                {name : 'Fée'},
+                {name : 'Feu'},
+                {name : 'Glace'},
+                {name : 'Insecte'},
+                {name : 'Normal'},
+                {name : 'Plante'},
+                {name : 'Poison'},
+                {name : 'Psy'},
+                {name : 'Roche'},
+                {name : 'Sol'},
+                {name : 'Spectre'},
+                {name : 'Ténèbres'},
+                {name : 'Vol'},
+            ]
+        }
+    },
+    methods: {
+        getImage(name) {
+            return require('@/assets/type/Miniature_Type_' + name + '_EB.png')
+        }
+    }
 }
 </script>

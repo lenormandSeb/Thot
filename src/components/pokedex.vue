@@ -16,11 +16,11 @@
                     <th>Action</th>
                 </thead>
                 <tbody>
-                    <tr v-for="pokemon in listPokemon" v-bind:key="pokemon.id">
+                    <tr v-for="pokemon in listPokemon" v-bind:key="pokemon.num_dex">
                         <td>image here</td>
-                        <td>{{ pokemon.numero }}</td>
-                        <td>{{ pokemon.nom }}</td>
-                        <td><span><img :src="getImageType( pokemon.type.type1 )" alt=""/></span> <span v-if="pokemon.type.type2 != null"> - <img :src="getImageType( pokemon.type.type2 )" alt=""/></span> </td>
+                        <td>{{ pokemon.num_dex }}</td>
+                        <td>{{ pokemon.name }}</td>
+                        <td><span><img :src="getImageType( pokemon.type.type1.name )" alt=""/></span> <span v-if="pokemon.type.type2.name != null"> - <img :src="getImageType( pokemon.type.type2 )" alt=""/></span> </td>
                         <td>
                             <div class="btn-group btn-group-sm" role="group">
                                 <button class="btn btn-primary">Ajouter à l'équipe</button>
@@ -35,63 +35,37 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'Pokedex',
   methods: {
       getImageType(type) {
           return require('../assets/type/Miniature_Type_'+type+'_EB.png');
       },
-    //   getImagePokemon(pokemon, chromatique) {
-    //       //get Pokemon Sprite
-    //   }
   },
   data () {
     return {
         search: "",
-        pokemons: [
-            {
-                id: 1,
-                numero: '001',
-                nom: 'Bulbizarre',
-                type: {
-                    type1 : 'Plante',
-                    type2 : 'Poison'
-                }
-            },
-            {
-                id: 2,
-                numero: '002',
-                nom: 'Herbizarre',
-                type: {
-                    type1 : 'Plante',
-                    type2 : 'Poison'
-                }
-            },
-            {
-                id: 3,
-                numero: '003',
-                nom: 'Florizarre',
-                type: {
-                    type1 : 'Plante',
-                    type2 : 'Poison'
-                }
-            },
-            {
-                id: 4,
-                numero: '004',
-                nom: 'Salameche',
-                type: {
-                    type1 : 'Feu'
-                }
-            }
-        ]
+        pokemons: []
     }
+  },
+  mounted() {
+      axios
+        .get('http://192.168.1.33:8000/pokedex')
+        .then((response) => {
+            if(response.data.pokemons) {
+                console.log(response.data.pokemons.type)
+                this.pokemons = response.data.pokemons
+            }
+        })
   },
   computed: {
       listPokemon: function(){
-          return this.pokemons.filter(pokemon => {
-              return pokemon.nom.toLowerCase().includes(this.search.toLowerCase())
+          let pokemon =  this.pokemons.filter(pokemon => {
+              return pokemon.name.toLowerCase().includes(this.search.toLowerCase())
           })
+
+          return pokemon
       }
   }
     

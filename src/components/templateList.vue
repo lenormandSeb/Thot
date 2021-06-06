@@ -1,5 +1,5 @@
 <template>
-    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <nav class="d-md-block bg-light sidebar">
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item">
@@ -34,7 +34,7 @@
                   Talent Dex
                 </a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a class="nav-link" href="#">
                   <span data-feather="users"></span>
                   Customers
@@ -51,10 +51,10 @@
                   <span data-feather="layers"></span>
                   Integrations
                 </a>
-              </li>
+              </li> -->
             </ul>
 
-            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <!-- <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
               <span>Saved reports</span>
               <a class="d-flex align-items-center text-muted" href="#">
                 <span data-feather="plus-circle"></span>
@@ -85,7 +85,7 @@
                   Year-end sale
                 </a>
               </li>
-            </ul>
+            </ul> -->
           </div>
         </nav>
 </template>
