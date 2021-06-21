@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <b-navbar  type="dark" variant="dark" class="navbar sticky-top flex-md-nowrap p-0">
-      <b-navbar-brand v-b-toggle.sidebar-right style="background-color:#343a40 !important; border-color: #343a40 !important">Teambuilder Pokemon</b-navbar-brand>
+      <b-navbar-brand v-b-toggle.sidebar-right style="background-color:#343a40 !important; border-color: #2c3e50 !important"> <span class="navbar-toggler-icon"></span></b-navbar-brand>
+      <b-navbar-brand style="background-color:#343a40 !important; border-color: #343a40 !important" href="#"><router-link to="/">Teambuilder Pokemon</router-link></b-navbar-brand>
     </b-navbar>
     <b-sidebar id="sidebar-right" title="Teambuilder Pokemon" left shadow>
        <TemplateList />
